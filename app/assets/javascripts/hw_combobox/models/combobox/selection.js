@@ -6,8 +6,18 @@ Combobox.Selection = Base => class extends Base {
     this._forceSelectionAndFilter(currentTarget, inputType);
 
     this._fireChangedEvent(currentTarget);
-    
+
     this._closeAndBlur("hw:optionRoleClick")
+  }
+
+  _fireChangedEvent(option) {
+    const itemSelectedEvent = new CustomEvent("combobox:itemSelected", {
+      detail: { selectedItem: option },
+      bubbles: true,
+      cancelable: true,
+    });
+
+    this.element.dispatchEvent(itemSelectedEvent);
   }
 
   _connectSelection() {
