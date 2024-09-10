@@ -3,7 +3,10 @@ import { wrapAroundAccess, isDeleteEvent } from "hw_combobox/helpers"
 
 Combobox.Selection = Base => class extends Base {
   selectOnClick({ currentTarget, inputType }) {
-    this._forceSelectionAndFilter(currentTarget, inputType)
+    this._forceSelectionAndFilter(currentTarget, inputType);
+
+    this._fireChangedEvent(currentTarget);
+    
     this._closeAndBlur("hw:optionRoleClick")
   }
 
